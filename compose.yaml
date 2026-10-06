@@ -1,0 +1,23 @@
+name: tablas-pdf
+services:
+  app:
+    build: .
+    image: tablas-pdf:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${TABLAS_PORT:-8766}:8000"
+    read_only: true
+    tmpfs:
+      - /tmp:size=536870912,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 128
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

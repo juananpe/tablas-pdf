@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tablas · PDF a JSON</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231b6758'/%3E%3Cpath d='M8 8h16v16H8zM8 14h16M14 8v16' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/" aria-label="Tablas, inicio"><span class="brand-icon">▦</span> tablas<span class="brand-sub">PDF → JSON</span></a><span class="local-note"><i></i> Extracción de tablas</span></header>
+<main>
+<div class="intro"><div><div class="eyebrow">PREPARA TUS DATOS</div><h1>Del PDF a datos que puedes usar.</h1><p>Carga un documento, marca las páginas con tablas y extrae sus datos.</p></div><span class="step-note">01 Cargar <span>→</span> 02 Seleccionar <span>→</span> 03 Extraer</span></div>
+<div class="workspace">
+<section class="source panel" aria-labelledby="pages-heading">
+<div class="panel-head"><div><span class="eyebrow">DOCUMENTO</span><h2 id="pages-heading">Páginas del PDF</h2></div><button id="change" class="button secondary" hidden>Cambiar PDF</button></div>
+<input type="file" id="file" accept="application/pdf,.pdf" hidden>
+<button class="dropzone" id="upload"><span class="upload-icon" aria-hidden="true">↥</span><strong>Carga tu PDF</strong><span>Haz clic o arrastra el archivo aquí</span><small>Hasta 50 MB · 300 páginas</small></button>
+<div id="document-info" class="document-info" hidden><span class="file-badge">PDF</span><div><strong id="filename"></strong><span id="filemeta"></span></div></div>
+<div class="selection-toolbar" id="selection-toolbar" hidden><span id="selection-label">Marca las páginas con tablas</span><div><button id="select-all" class="text-button">Todas</button><button id="clear" class="text-button">Ninguna</button></div></div>
+<div id="pages" class="page-grid" hidden aria-label="Seleccionar páginas con tablas"></div>
+<div id="source-placeholder" class="source-placeholder"><div class="paper-stack" aria-hidden="true"><span></span><span></span><span>▦</span></div><p>Las páginas aparecerán aquí</p><small>Puedes seleccionar varias tablas a la vez.</small></div>
+<div class="extract-bar"><span id="selected-count">Ninguna página seleccionada</span><button id="extract" class="button primary" disabled><span>Extraer tablas</span><span aria-hidden="true">→</span></button></div>
+</section>
+<section class="output panel" aria-labelledby="output-heading">
+<div class="panel-head"><div><span class="eyebrow">RESULTADO</span><h2 id="output-heading">Datos en JSON</h2></div><span class="format-tag">.json</span></div>
+<div class="output-toolbar"><div class="tabs" role="tablist" aria-label="Vista del resultado"><button id="records-tab" role="tab" aria-selected="true" class="active">Registros</button><button id="tables-tab" role="tab" aria-selected="false">Celdas originales</button></div><div class="output-actions"><button class="text-button" id="copy" disabled>Copiar</button><button class="text-button" id="download" disabled>Descargar</button></div></div>
+<div id="result-meta" class="result-meta" hidden></div>
+<div id="warnings" class="warnings" hidden></div>
+<div id="result-placeholder" class="result-placeholder"><div class="code-icon" aria-hidden="true">{ }</div><h3>Tus tablas, con estructura.</h3><p>Selecciona las páginas de la izquierda<br>y pulsa <strong>Extraer tablas</strong>.</p><div class="sample"><span>"asignatura"</span>: "Biola",<br><span>"mujeres"</span>: 23,<br><span>"hombres"</span>: 4<br><small>Ejemplo de registro</small></div></div>
+<div id="processing" class="processing" hidden><span class="spinner"></span><strong>Extrayendo tablas…</strong><span>Conservando filas, columnas y procedencia.</span></div>
+<pre id="json" tabindex="0" aria-label="Resultado JSON" hidden></pre>
+<div class="output-foot"><span id="output-status">Listo para tu primer documento</span><span>pdfplumber</span></div>
+</section>
+</div>
+<div class="bottom-note"><span>Los archivos se procesan en este servidor y caducan tras una hora de inactividad.</span><span>Los escaneos necesitan OCR.</span></div>
+<div id="notice" role="status" aria-live="polite" hidden></div>
+</main>
+</body></html>
